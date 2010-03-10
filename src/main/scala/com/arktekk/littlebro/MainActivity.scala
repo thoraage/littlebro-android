@@ -38,5 +38,6 @@ class AttributeViewOpenListener(that: ListActivity, mbeanNodes: NodeSeq) extends
     val attributeNodes = xml \\ "attribute"
     val names = attributeNodes.map({node => (node \ "@name").toString}).toArray
     that.setListAdapter(new ArrayAdapter(that, R.layout.list_item, names))
+    that.getListView.setOnItemClickListener(null)
   }
 }
