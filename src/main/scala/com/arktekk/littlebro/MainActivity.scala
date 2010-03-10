@@ -13,8 +13,8 @@ class MainActivity extends ListActivity {
     super.onCreate(savedInstanceState)
     val xml = ServerConnection.getDefault.load
     val domainNodes = xml \\ "domain"
-    val names = domainNodes.map({node => (node \ "@name").toString})
-    setListAdapter(new ArrayAdapter(this, R.layout.list_item, names.toArray))
+    val names = domainNodes.map({node => (node \ "@name").toString}).toArray
+    setListAdapter(new ArrayAdapter(this, R.layout.list_item, names))
     getListView.setOnItemClickListener(new DomainViewOpenListener(this, domainNodes))
   }
 
@@ -25,7 +25,18 @@ class DomainViewOpenListener(that: ListActivity, domainNodes: NodeSeq) extends O
     val url = (domainNodes(position) \ "@mbeansUri").toString
     val xml = ServerConnection.getDefault.loadUri(new URL(url))
     val mbeanNodes = xml \\ "mbean"
-    val names = mbeanNodes.map({node => (node \ "@keyProperties").toString})
-    that.setListAdapter(new ArrayAdapter(that, R.layout.list_item, names.toArray))
+    val names = mbeanNodes.map({node => (node \ "@keyProperties").toString}).toArray
+    that.setListAdapter(new ArrayAdapter(that, R.layout.list_item, names))
+    that.getListView.setOnItemClickListener(new AttributeViewOpenListener(that, mbeanNodes))
+  }
+}
+
+class AttributeViewOpenListener(that: ListActivity, mbeanNodes: NodeSeq) extends OnItemClickListener {
+  def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long) {
+    val url = ((mbeanNodes(position)) \ "@uri").toString
+    val xml = ServerConnection.getDefault.loadUri(new URL(url))
+    val attributeNodes = xml \\ "attribute"
+    val names = attributeNodes.map({node => (node \ "@name").toString}).toArray
+    that.setListAdapter(new ArrayAdapter(that, R.layout.list_item, names))
   }
 }
