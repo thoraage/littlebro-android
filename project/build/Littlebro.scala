@@ -1,7 +1,7 @@
 import sbt._
 
 trait Defaults {
-  def androidPlatformName = "android-1.6"
+  def androidPlatformName = "android-1.5"
 }
 class Littlebro(info: ProjectInfo) extends ParentProject(info) {
   override def shouldCheckOutputDirectories = false
