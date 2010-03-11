@@ -1,10 +1,10 @@
 package com.arktekk.littlebro
 
+import _root_.android.app.ListActivity
 import _root_.android.os.Bundle
+import _root_.android.view.{KeyEvent, View}
 import _root_.android.widget.AdapterView.OnItemClickListener
 import _root_.android.widget.{AdapterView, ArrayAdapter}
-import _root_.android.view.View
-import _root_.android.app.ListActivity
 import java.net.URL
 import collection.mutable.Stack
 import xml.{Node, NodeSeq}
@@ -30,6 +30,16 @@ class MainActivity extends ListActivity {
         }
       }
     })
+  }
+
+  override def onKeyDown(keyCode: Int, event: KeyEvent) = {
+    if (keyCode == KeyEvent.KEYCODE_BACK && propertyViewStack.size > 1) {
+      propertyViewStack.pop
+      populate
+      true
+    } else {
+      super.onKeyDown(keyCode, event)
+    }
   }
 
   def populate() {
