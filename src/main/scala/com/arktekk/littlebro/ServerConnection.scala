@@ -5,7 +5,6 @@ import java.net.URL
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
-
 object ServerConnection {
 
   //val jmxEnv: Map[String, Array[String]] = new HashMap
