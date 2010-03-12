@@ -4,8 +4,7 @@ import _root_.android.app.{AlertDialog, ListActivity}
 import _root_.android.content.DialogInterface.OnClickListener
 import _root_.android.content.DialogInterface
 import _root_.android.os.Bundle
-import _root_.android.view.{MenuItem, ContextMenu, KeyEvent, View}
-import _root_.android.view.ContextMenu.ContextMenuInfo
+import _root_.android.view.{KeyEvent, View}
 import _root_.android.widget.{AdapterView, ArrayAdapter}
 import _root_.android.widget.AdapterView.{OnItemClickListener}
 import java.net.URL
@@ -45,28 +44,6 @@ class MainActivity extends ListActivity {
     }
   }
 
-  /*
-  object MenuItemIds {
-    val edit = 1
-    val delete = 2
-  }
-
-  override def onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
-    super.onCreateContextMenu(menu, v, menuInfo)
-    menu.add(0, MenuItemIds.edit, 0, "Edit")
-    menu.add(0, MenuItemIds.delete, 0, "Delete")
-  }
-
-  override def onContextItemSelected(item: MenuItem) = {
-    val info = item.getMenuInfo();
-    item.getItemId() match {
-      case MenuItemIds.edit => true
-      case MenuItemIds.delete => true
-      case _ => super.onContextItemSelected(item)
-    }
-  }
-  */
-
   def populate() {
     setListAdapter(new ArrayAdapter(this, R.layout.list_item, propertyViewStack.top.names))
   }
@@ -99,8 +76,6 @@ class MainActivity extends ListActivity {
     override def onSelect(position: Int) = new AttributeListModel(nodes(position))
   }
 
-  var selectedAttributeNode: Seq[Node] = null
-
   class AttributeListModel(mbeanNode: NodeSeq) extends ListModel {
     private val url = ((mbeanNode) \ "@href").toString
     private val xml = ServerConnection.getDefault.loadUri(new URL(url))
@@ -110,10 +85,8 @@ class MainActivity extends ListActivity {
     override def names = nodes.map({_.text.trim}).toArray
 
     override def onSelect(position: Int) = {
-      selectedAttributeNode = nodes(position)
-      //showDialog(DialogIds.showValue)
       val builder = new AlertDialog.Builder(MainActivity.this)
-      val url = (selectedAttributeNode \ "@href").toString
+      val url = (nodes(position) \ "@href").toString
       val xml = serverConnection.loadUri(new URL(url))
       val value = ((xml \\ "span").filterClass("management") \\ "div").filterClass("value").text.trim
       builder.setTitle("Value").setMessage(value).setNeutralButton("Ok", new OnClickListener {
