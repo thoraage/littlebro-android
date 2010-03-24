@@ -9,7 +9,7 @@ object ServerConnection {
 
   //val jmxEnv: Map[String, Array[String]] = new HashMap
   //val credentials = Array("admin", "adminadmin")
-  private val defaultServerConnection = new ServerConnection(new URL("http://10.80.17.79:8888/rest/domains"))
+  private val defaultServerConnection = new ServerConnection(new URL("http://192.168.1.2:8888/rest/domains"))
 
   def getDefault = defaultServerConnection
 
