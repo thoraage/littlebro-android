@@ -12,6 +12,7 @@ class Littlebro(info: ProjectInfo) extends ParentProject(info) {
 
   class MainProject(info: ProjectInfo) extends AndroidProject(info) with Defaults {    
     val scalatest = "org.scalatest" % "scalatest" % "1.0" % "test"
+    val specs = "org.scala-tools.testing" % "specs" % "1.6.2" % "test"
   }
 
   class TestProject(info: ProjectInfo) extends AndroidTestProject(info) with Defaults

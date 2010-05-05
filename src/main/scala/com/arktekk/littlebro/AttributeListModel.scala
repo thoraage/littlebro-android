@@ -9,7 +9,7 @@ import XmlHelper._
  */
 class AttributeListModel(mbeanNode: NodeSeq) extends ListModel {
   private val url = ((mbeanNode) \ "@href").toString
-  private val xml = ServerConnection.getDefault.loadUri(new URL(url))
+  private val xml = new ServerConnection(new URL(url)).load
 
   override def nodes = ((xml \\ "span").filterClass("management") \\ "a").filterClass("attribute")
 

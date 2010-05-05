@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">LittleBro</string>
+  <string name="host_address_text">Host address:</string>
+  <string name="user_name_text">User name:</string>
+  <string name="password_text">Password:</string>
+  <string name="login_button_text">Login</string>
+  <string name="login_save_checkbox">Remember login</string>
+
+  <string name="app_name">LittleBro</string>
+  <string name="button_new">New</string>
 </resources>
