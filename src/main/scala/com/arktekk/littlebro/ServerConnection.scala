@@ -1,24 +1,36 @@
 package com.arktekk.littlebro
 
-import java.net.URL
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.client.{HttpClient, CredentialsProvider}
+import org.apache.http.client.methods.{HttpGet}
+import java.net.URI
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
+
 object ServerConnection {
 
-  //val jmxEnv: Map[String, Array[String]] = new HashMap
-  //val credentials = Array("admin", "adminadmin")
-  //private val defaultServerConnection = new ServerConnection(new URL("http://192.168.1.2:8888/rest/domains"))
-
-  //def getDefault = defaultServerConnection
+  def apply(credentialsProvider: CredentialsProvider, uri: URI) = new ServerConnection(credentialsProvider, uri, None)
 
 }
 
-class ServerConnection(baseUrl: URL) {
+class ServerConnection(credentialsProvider: CredentialsProvider, uri: URI, httpClientDefined: Option[HttpClient]) {
+  
+  private lazy val httpClient: HttpClient = httpClientDefined match {
+    case None =>
+      val httpClient = new DefaultHttpClient()
+      httpClient.setCredentialsProvider(credentialsProvider)
+      httpClient
+    case Some(httpClient) => httpClient
+  }
 
-  def load = XmlParser.loadXML(baseUrl.openStream)
+  def get = {
+    XmlParser.loadXML(httpClient.execute(new HttpGet(uri)).getEntity.getContent)
+  }
 
-  def loadUri(url: URL) = XmlParser.loadXML(url.openStream)
+  def withPath(path: String) = {
+    new ServerConnection(this.credentialsProvider, new URI(uri.getScheme, uri.getUserInfo, uri.getHost, uri.getPort, path, null, null), Some(httpClient))
+  }
 
 }

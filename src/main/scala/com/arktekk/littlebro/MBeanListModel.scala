@@ -7,13 +7,13 @@ import XmlHelper._
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
-class MBeanListModel(domainNode: NodeSeq) extends ListModel {
-  private val url = (domainNode \ "@href").toString
-  private val xml = new ServerConnection(new URL(url)).load
+class MBeanListModel(serverConnection: ServerConnection, domainNode: NodeSeq) extends ListModel {
+  private val href = (domainNode \ "@href").toString
+  private val xml = serverConnection.withPath(href).get
 
   override def nodes = ((xml \\ "span").filterClass("management") \\ "a").filterClass("mbean")
 
   override def names = nodes.map({_.text.trim}).toArray
 
-  override def onSelect(position: Int) = new AttributeListModel(nodes(position))
+  override def onSelect(position: Int) = new AttributeListModel(serverConnection, nodes(position))
 }

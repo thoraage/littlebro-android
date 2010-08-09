@@ -9,20 +9,20 @@ import _root_.android.widget.{AdapterView, ArrayAdapter}
 import _root_.android.widget.AdapterView.{OnItemClickListener}
 import collection.mutable.Stack
 import XmlHelper._
-import java.net.URL
+import java.net.{URI, URL}
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
-class BrowserActivity extends ListActivity {
-  val propertyViewStack = new Stack[ListModel]
+class BrowserActivity extends ListActivity with AndroidCredentialsProvider {
+  val propertyViewStack = new Stack[ListModel]                            
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    val domainUrl: URL = new URL(getIntent.getDataString)
-    println("Domain url: " + domainUrl)
-    propertyViewStack.push(new DomainListModel(new ServerConnection(domainUrl)))
-    populate
+    val domainUri = new URI(getIntent.getDataString)
+    println("Domain url: " + domainUri)
+    propertyViewStack.push(new DomainListModel(ServerConnection(this, domainUri)))
+    populate                                      
     getListView.setOnItemClickListener(new OnItemClickListener {
       def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long) {
         val listModel = propertyViewStack.top.onSelect(position)
@@ -33,8 +33,8 @@ class BrowserActivity extends ListActivity {
         propertyViewStack.top match {
           case model: AttributeListModel =>
             val builder = new AlertDialog.Builder(BrowserActivity.this)
-            val url = new URL((model.nodes(position) \ "@href").toString)
-            val xml = new ServerConnection(url).load
+            val href = (model.nodes(position) \ "@href").toString
+            val xml = model.serverConnection.withPath(href).get
             val value = ((xml \\ "span").filterClass("management") \\ "div").filterClass("value").text.trim
             builder.setTitle("Value").setMessage(value).setNeutralButton("Ok", new OnClickListener {
               override def onClick(dialog: DialogInterface, id: Int) {
