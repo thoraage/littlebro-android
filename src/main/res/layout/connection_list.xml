@@ -5,10 +5,10 @@
               a:orientation="vertical">
   <TextView a:text="@string/host_address_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
   <EditText a:id="@+login/host_address_edit" a:layout_width="fill_parent" a:layout_height="wrap_content"/>
-  <TextView a:text="@string/user_name_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
+  <!--TextView a:text="@string/user_name_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
   <EditText a:id="@+login/user_name_edit" a:layout_width="fill_parent" a:layout_height="wrap_content"/>
   <TextView a:text="@string/password_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
   <EditText a:id="@+login/password_edit" a:password="true" a:layout_width="fill_parent" a:layout_height="wrap_content"/>
-  <CheckBox a:id="@+login/save_check_box" a:text="@string/login_save_checkbox" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
+  <CheckBox a:id="@+login/save_check_box" a:text="@string/login_save_checkbox" a:layout_width="wrap_content" a:layout_height="wrap_content"/-->
   <Button a:id="@+login/login_button" a:text="@string/login_button_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
 </LinearLayout>
