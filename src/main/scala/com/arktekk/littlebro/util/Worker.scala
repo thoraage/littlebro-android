@@ -6,10 +6,12 @@ package com.arktekk.littlebro.util
 
 object Worker {
 
-  def worker(f: => Unit): Unit = {
-    new Thread() {
+  def worker(f: => Unit): Thread = {
+    val thread = new Thread() {
       override def run: Unit = f
-    }.start
+    }
+    thread.start
+    thread
   }
 
 }
