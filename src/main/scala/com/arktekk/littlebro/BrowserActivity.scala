@@ -69,7 +69,7 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
   }
 
   def populate() {
-    setListAdapter(new ArrayAdapter(this, R.layout.list_item, propertyViewStack.top.names))
+    setListAdapter(new ArrayAdapter(this, R.layout.browser, propertyViewStack.top.names))
   }
 
 }

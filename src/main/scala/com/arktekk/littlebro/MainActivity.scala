@@ -15,13 +15,20 @@ import java.net.URL
 class MainActivity extends Activity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.connection_list)
-    val loginButton = findViewById(R.login.login_button).asInstanceOf[Button]
+    setContentView(R.layout.connections)
+    val loginButton = findViewById(R.connections.login_button).asInstanceOf[Button]
     loginButton.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) {
-        val hostAddressTextView = findViewById(R.login.host_address_edit).asInstanceOf[TextView]
+        val hostAddressTextView = findViewById(R.connections.host_address_edit).asInstanceOf[TextView]
         val intent: Intent = new Intent(MainActivity.this, classOf[BrowserActivity])
         intent.setData(Uri.parse(hostAddressTextView.getText.toString))
+        startActivity(intent)
+      }
+    })
+    val tullButton = findViewById(R.connections.tull_button).asInstanceOf[Button]
+    tullButton.setOnClickListener(new View.OnClickListener() {
+      override def onClick(v: View) {
+        val intent: Intent = new Intent(MainActivity.this, classOf[LoginActivity])
         startActivity(intent)
       }
     })

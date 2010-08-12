@@ -9,6 +9,7 @@
         <category android:name="android.intent.category.LAUNCHER"></category>
       </intent-filter>
     </activity>
-    <activity android:label="@string/app_name" android:name=".BrowserActivity"/>
+    <activity android:label="@string/browser_layout_name" android:name=".BrowserActivity"/>
+    <activity android:label="@string/login_layout_name" android:name=".LoginActivity" android:theme="@android:style/Theme.Dialog"/>
   </application>
 </manifest>
