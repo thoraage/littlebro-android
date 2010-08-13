@@ -1,15 +1,16 @@
 package com.arktekk.littlebro.util
 
+import _root_.android.app.{Activity, ProgressDialog}
+import _root_.android.content.Context
 import _root_.android.os.Handler
 import _root_.android.view.Window
-import _root_.android.content.Context
-import _root_.android.app.ProgressDialog
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 
-trait UICallbackHandler {
+trait UICallbackHandler extends Activity {
+
   private val handler = new Handler()
 
   def handleUI(f: => Unit): Unit = handler.post(new Runnable() {

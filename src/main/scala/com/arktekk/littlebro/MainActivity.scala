@@ -6,7 +6,6 @@ import _root_.android.net.Uri
 import _root_.android.os.Bundle
 import _root_.android.view.View
 import _root_.android.widget.{TextView, Button}
-import java.net.URL
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
@@ -17,7 +16,7 @@ class MainActivity extends Activity {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.connections)
     val loginButton = findViewById(R.connections.login_button).asInstanceOf[Button]
-    loginButton.setOnClickListener(new View.OnClickListener() {
+    loginButton.setOnClickListener(new View.OnClickListener {
       override def onClick(v: View) {
         val hostAddressTextView = findViewById(R.connections.host_address_edit).asInstanceOf[TextView]
         val intent: Intent = new Intent(MainActivity.this, classOf[BrowserActivity])
@@ -28,9 +27,8 @@ class MainActivity extends Activity {
     val tullButton = findViewById(R.connections.tull_button).asInstanceOf[Button]
     tullButton.setOnClickListener(new View.OnClickListener() {
       override def onClick(v: View) {
-        val intent: Intent = new Intent(MainActivity.this, classOf[LoginActivity])
-        startActivity(intent)
       }
     })
   }
+
 }

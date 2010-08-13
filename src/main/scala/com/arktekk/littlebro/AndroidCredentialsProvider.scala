@@ -1,18 +1,53 @@
 package com.arktekk.littlebro
 
+import _root_.android.app.Activity
+import _root_.android.content.Intent
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.auth.{UsernamePasswordCredentials, Credentials, AuthScope}
+import util.UICallbackHandler
+import concurrent.MailBox
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 
-trait AndroidCredentialsProvider extends CredentialsProvider {
+trait AndroidCredentialsProvider extends UICallbackHandler with CredentialsProvider {
+  val credentialsMailBox = new MailBox
 
   def setCredentials(authScope: AuthScope, credentials: Credentials): Unit = {}
 
-  def getCredentials(authScope: AuthScope): Credentials = { new UsernamePasswordCredentials("admin", "adminadmin") }
+  def getCredentials(authScope: AuthScope): Credentials = {
+    handleUI {
+      val intent = new Intent(getContext, classOf[LoginActivity])
+      startActivityForResult(intent, LOGIN_INFORMATION)
+    }
+    credentialsMailBox.receive {
+      case Some((userName: String, password: String)) =>
+        new UsernamePasswordCredentials(userName, password)
+      case a =>
+        // TODO how to fail? println("really got: " + a)
+        null
+    }
+  }
 
   def clear: Unit = {}
-  
+
+  val LOGIN_INFORMATION = 7843
+
+  override def onActivityResult(requestCode: Int, resultCode: Int, data: Intent): Unit = {
+    requestCode match {
+      case LOGIN_INFORMATION =>
+        resultCode match {
+          case Activity.RESULT_OK =>
+            val userName = data.getExtras.getString(R.login.user_name_edit.toString)
+            val password = data.getExtras.getString(R.login.password_edit.toString)
+            credentialsMailBox.send(Some(userName, password))
+          case _ =>
+            credentialsMailBox.send(None)
+        }
+      case _ =>
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+  }
+
 }

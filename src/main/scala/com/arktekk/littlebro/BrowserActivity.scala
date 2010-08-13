@@ -2,16 +2,16 @@ package com.arktekk.littlebro
 
 import _root_.android.app.{AlertDialog, ListActivity}
 import _root_.android.content.DialogInterface.OnClickListener
+import _root_.android.content.DialogInterface
+import _root_.android.os.Bundle
 import _root_.android.view.{KeyEvent, View}
 import _root_.android.widget.{AdapterView, ArrayAdapter}
 import _root_.android.widget.AdapterView.{OnItemClickListener}
 import collection.mutable.Stack
 import util.UICallbackHandler
-import XmlHelper._
-import java.net.{URI, URL}
-import _root_.android.os.{Handler, Bundle}
+import java.net.URI
 import util.Worker._
-import _root_.android.content.{Context, DialogInterface}
+import XmlHelper._
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
@@ -26,7 +26,7 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
     val domainUri = new URI(getIntent.getDataString)
     busy {
       worker {
-        val domainList = new DomainListModel(ServerConnection(BrowserActivity.this, domainUri))
+        val domainList = new DomainListModel(ServerConnection(BrowserActivity.this, domainUri).get)
         handleUI {
           propertyViewStack.push(domainList)
           populate
