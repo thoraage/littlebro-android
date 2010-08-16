@@ -11,7 +11,7 @@ import _root_.android.view.Window
 
 trait UICallbackHandler extends Activity {
 
-  def handleUI(f: => Unit): Unit = runOnUiThread(new Runnable() {
+  def runOnUiThread(f: => Unit): Unit = runOnUiThread(new Runnable() {
     def run: Unit = f
   })
 
@@ -23,12 +23,12 @@ trait UICallbackHandler extends Activity {
       override def run: Unit = {
         thread.join(1000)
         if (thread.isAlive) {
-          handleUI {
+          runOnUiThread {
             val dialog = ProgressDialog.show(getContext, "Busy", "Retrieving")
             new Thread() {
               override def run: Unit = {
                 thread.join
-                handleUI {
+                runOnUiThread {
                   dialog.hide
                 }
               }

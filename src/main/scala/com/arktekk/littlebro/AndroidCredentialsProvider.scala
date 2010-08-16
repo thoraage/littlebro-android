@@ -17,7 +17,7 @@ trait AndroidCredentialsProvider extends UICallbackHandler with CredentialsProvi
   def setCredentials(authScope: AuthScope, credentials: Credentials): Unit = {}
 
   def getCredentials(authScope: AuthScope): Credentials = {
-    handleUI {
+    runOnUiThread {
       val intent = new Intent(getContext, classOf[LoginActivity])
       startActivityForResult(intent, LOGIN_INFORMATION)
     }

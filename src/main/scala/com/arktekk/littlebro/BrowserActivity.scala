@@ -28,14 +28,14 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
     busy {
       worker {
         val domainList = new DomainListModel(ServerConnection(BrowserActivity.this, domainUri).get)
-        handleUI {
+        runOnUiThread {
           propertyViewStack.push(domainList)
           populate
         }
       }
     }
-    getListView.setOnItemClickListener {
-      (parent: AdapterView[_], view: View, position: Int, id: Long) =>
+    getListView.onItemClick {
+      (_, _, position: Int, _) =>
         val listModel = propertyViewStack.top.onSelect(position)
         if (listModel != null) {
           propertyViewStack.push(listModel)
