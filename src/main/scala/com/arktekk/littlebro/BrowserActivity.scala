@@ -12,6 +12,7 @@ import util.UICallbackHandler
 import java.net.URI
 import util.Worker._
 import XmlHelper._
+import util.ListenerConversions._
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
@@ -33,8 +34,8 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
         }
       }
     }
-    getListView.setOnItemClickListener(new OnItemClickListener {
-      def onItemClick(parent: AdapterView[_], view: View, position: Int, id: Long) {
+    getListView.setOnItemClickListener {
+      (parent: AdapterView[_], view: View, position: Int, id: Long) =>
         val listModel = propertyViewStack.top.onSelect(position)
         if (listModel != null) {
           propertyViewStack.push(listModel)
@@ -54,8 +55,7 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
             builder.create.show
           case _ =>
         }
-      }
-    })
+    }
   }
 
   override def onKeyDown(keyCode: Int, event: KeyEvent) = {

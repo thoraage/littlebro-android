@@ -11,9 +11,7 @@ import _root_.android.view.Window
 
 trait UICallbackHandler extends Activity {
 
-  private val handler = new Handler()
-
-  def handleUI(f: => Unit): Unit = handler.post(new Runnable() {
+  def handleUI(f: => Unit): Unit = runOnUiThread(new Runnable() {
     def run: Unit = f
   })
 
