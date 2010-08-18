@@ -11,6 +11,6 @@ class AttributeModel(xml: Node) extends Model {
 
   def value = ((xml \\ "span").filterClass("management") \\ "div").filterClass("value").text.trim
 
-  def onSelect(position: Int)(retrieve: String => Node) = None
+  def onSelect(position: Int)(retrieve: String => Either[Node, HttpError]) = None
 
 }

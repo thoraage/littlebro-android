@@ -27,10 +27,17 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
     val serverConnection = new ServerConnection(BrowserActivity.this, domainUri)
     busy {
       worker {
-        val domainList = new DomainListModel(serverConnection.get)
-        runOnUiThread {
-          propertyViewStack.push(domainList)
-          populate
+        serverConnection.get match {
+          case Left(node) =>
+            val domainList = new DomainListModel(node)
+            runOnUiThread {
+              propertyViewStack.push(domainList)
+              populate
+            }
+          case Right(httpError) =>
+            runOnUiThread {
+              finish
+            }
         }
       }
     }
@@ -39,9 +46,10 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
         busy {
           worker {
             propertyViewStack.top.onSelect(position) {serverConnection.get(_)} match {
-              case Some(model) =>
+              case Some(Left(model)) =>
                 propertyViewStack.push(model)
                 populate
+              case Some(Right(httpError)) => println("No worky: " + httpError.code) // TODO
               case None =>
             }
           }

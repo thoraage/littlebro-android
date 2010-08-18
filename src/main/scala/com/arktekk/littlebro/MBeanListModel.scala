@@ -11,5 +11,9 @@ class MBeanListModel(xml: Node) extends ListModel {
 
   override def names = nodes.map({_.text.trim}).toArray
 
-  override def onSelect(position: Int)(retrieve: String => Node) = Some(new AttributeListModel(retrieve(nodes(position) \ "@href" toString)))
+  override def onSelect(position: Int)(retrieve: String => Either[Node, HttpError]) =
+    retrieve(nodes(position) \ "@href" toString) match {
+      case Left(node) => Some(Left(new AttributeListModel(node)))
+      case Right(httpError) => Some(Right(httpError))
+    }
 }

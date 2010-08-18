@@ -24,7 +24,7 @@ trait AndroidCredentialsProvider extends UICallbackHandler with CredentialsProvi
     credentialsMailBox.receive {
       case Some((userName: String, password: String)) =>
         new UsernamePasswordCredentials(userName, password)
-      case a =>
+      case None =>
         // TODO how to fail? println("really got: " + a)
         null
     }

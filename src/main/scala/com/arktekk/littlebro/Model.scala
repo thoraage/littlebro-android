@@ -7,5 +7,5 @@ import xml.Node
  */
 
 trait Model {
-  def onSelect(position: Int)(retrieve: String => Node): Option[Model]
+  def onSelect(position: Int)(retrieve: String => Either[Node, HttpError]): Option[Either[Model, HttpError]]
 }
