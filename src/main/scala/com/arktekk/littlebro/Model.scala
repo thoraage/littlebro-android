@@ -5,8 +5,7 @@ import xml.Node
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
-trait ListModel extends Model {
-  def names(): Array[String]
 
-  def nodes: Seq[Node]
+trait Model {
+  def onSelect(position: Int)(retrieve: String => Node): Option[Model]
 }

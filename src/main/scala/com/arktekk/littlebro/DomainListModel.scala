@@ -11,6 +11,5 @@ class DomainListModel(val node: Node) extends ListModel {
 
   override def names = nodes.map({_.text.trim}).toArray
 
-  // TODO remove server connection from models
-  override def onSelect(position: Int) = new MBeanListModel(null, nodes(position))
+  override def onSelect(position: Int)(retrieve: String => Node) = Some(new MBeanListModel(retrieve(nodes(position) \ "@href" toString)))
 }

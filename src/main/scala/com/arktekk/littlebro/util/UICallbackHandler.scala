@@ -2,8 +2,6 @@ package com.arktekk.littlebro.util
 
 import _root_.android.app.{Activity, ProgressDialog}
 import _root_.android.content.Context
-import _root_.android.os.Handler
-import _root_.android.view.Window
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

@@ -19,7 +19,7 @@ class MainActivity extends Activity {
     loginButton.setOnClickListener(new View.OnClickListener {
       override def onClick(v: View) {
         val hostAddressTextView = findViewById(R.connections.host_address_edit).asInstanceOf[TextView]
-        val intent: Intent = new Intent(MainActivity.this, classOf[BrowserActivity])
+        val intent = new Intent(MainActivity.this, classOf[BrowserActivity])
         intent.setData(Uri.parse(hostAddressTextView.getText.toString))
         startActivity(intent)
       }

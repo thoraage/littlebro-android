@@ -4,9 +4,8 @@ import _root_.android.app.{AlertDialog, ListActivity}
 import _root_.android.content.DialogInterface.OnClickListener
 import _root_.android.content.DialogInterface
 import _root_.android.os.Bundle
-import _root_.android.view.{KeyEvent, View}
-import _root_.android.widget.{AdapterView, ArrayAdapter}
-import _root_.android.widget.AdapterView.{OnItemClickListener}
+import _root_.android.view.KeyEvent
+import _root_.android.widget.ArrayAdapter
 import collection.mutable.Stack
 import util.UICallbackHandler
 import java.net.URI
@@ -18,16 +17,17 @@ import util.ListenerConversions._
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 class BrowserActivity extends ListActivity with AndroidCredentialsProvider with UICallbackHandler {
-  val propertyViewStack = new Stack[ListModel]
+  val propertyViewStack = new Stack[Model]
 
   def getContext = this
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     val domainUri = new URI(getIntent.getDataString)
+    val serverConnection = new ServerConnection(BrowserActivity.this, domainUri)
     busy {
       worker {
-        val domainList = new DomainListModel(ServerConnection(BrowserActivity.this, domainUri).get)
+        val domainList = new DomainListModel(serverConnection.get)
         runOnUiThread {
           propertyViewStack.push(domainList)
           populate
@@ -36,24 +36,15 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
     }
     getListView.onItemClick {
       (_, _, position: Int, _) =>
-        val listModel = propertyViewStack.top.onSelect(position)
-        if (listModel != null) {
-          propertyViewStack.push(listModel)
-          populate
-        }
-        propertyViewStack.top match {
-          case model: AttributeListModel =>
-            val builder = new AlertDialog.Builder(BrowserActivity.this)
-            val href = (model.nodes(position) \ "@href").toString
-            val xml = model.serverConnection.withPath(href).get
-            val value = ((xml \\ "span").filterClass("management") \\ "div").filterClass("value").text.trim
-            builder.setTitle("Value").setMessage(value).setNeutralButton("Ok", new OnClickListener {
-              override def onClick(dialog: DialogInterface, id: Int) {
-                dialog.dismiss
-              }
-            })
-            builder.create.show
-          case _ =>
+        busy {
+          worker {
+            propertyViewStack.top.onSelect(position) {serverConnection.get(_)} match {
+              case Some(model) =>
+                propertyViewStack.push(model)
+                populate
+              case None =>
+            }
+          }
         }
     }
   }
@@ -69,7 +60,20 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
   }
 
   def populate() {
-    setListAdapter(new ArrayAdapter(this, R.layout.browser, propertyViewStack.top.names))
+    runOnUiThread {
+      propertyViewStack.top match {
+        case model: ListModel =>
+          setListAdapter(new ArrayAdapter(this, R.layout.browser, model.names))
+        case model: AttributeModel =>
+          val builder = new AlertDialog.Builder(BrowserActivity.this)
+          builder.setTitle("Value").setMessage(model.value).setNeutralButton("Ok", new OnClickListener {
+            override def onClick(dialog: DialogInterface, id: Int) {
+              dialog.dismiss
+            }
+          })
+          builder.create.show
+      }
+    }
   }
 
 }
