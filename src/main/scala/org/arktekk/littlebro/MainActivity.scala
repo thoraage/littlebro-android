@@ -1,11 +1,11 @@
 package org.arktekk.littlebro
 
-import _root_.android.app.Activity
-import _root_.android.content.Intent
-import _root_.android.net.Uri
-import _root_.android.os.Bundle
-import _root_.android.view.View
-import _root_.android.widget.{TextView, Button}
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import android.widget.{TextView, Button}
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

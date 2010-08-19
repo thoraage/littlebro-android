@@ -1,10 +1,10 @@
 package org.arktekk.littlebro.util
 
-import _root_.android.widget.AdapterView.OnItemClickListener
-import _root_.android.view.View
-import _root_.android.widget.{ListView, AdapterView}
-import _root_.android.app.AlertDialog
-import _root_.android.content.DialogInterface
+import android.widget.AdapterView.OnItemClickListener
+import android.view.View
+import android.widget.{ListView, AdapterView}
+import android.app.AlertDialog
+import android.content.DialogInterface
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

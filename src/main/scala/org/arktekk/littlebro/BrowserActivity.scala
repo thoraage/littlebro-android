@@ -1,16 +1,17 @@
 package org.arktekk.littlebro
 
-import _root_.android.app.{AlertDialog, ListActivity}
-import _root_.android.content.DialogInterface.OnClickListener
-import _root_.android.content.DialogInterface
-import _root_.android.os.Bundle
-import _root_.android.view.KeyEvent
-import _root_.android.widget.ArrayAdapter
+import android.app.{AlertDialog, ListActivity}
+import android.content.DialogInterface.OnClickListener
+import android.content.DialogInterface
+import android.os.Bundle
+import android.view.KeyEvent
+import android.widget.ArrayAdapter
 import collection.mutable.Stack
+import model.{AttributeModel, DomainListModel, ListModel}
 import util.UICallbackHandler
 import java.net.URI
 import util.Worker._
-import XmlHelper._
+import util.XmlHelper._
 import util.ListenerConversions._
 
 /**

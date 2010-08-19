@@ -1,4 +1,4 @@
-package org.arktekk.littlebro
+package org.arktekk.littlebro.model
 
 import scala.xml.Node
 

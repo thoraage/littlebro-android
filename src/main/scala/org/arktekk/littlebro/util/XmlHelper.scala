@@ -1,4 +1,4 @@
-package org.arktekk.littlebro
+package org.arktekk.littlebro.util
 
 import scala.xml.{NodeSeq, Node}
 

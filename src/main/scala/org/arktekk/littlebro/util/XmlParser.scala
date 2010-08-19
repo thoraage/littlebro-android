@@ -1,4 +1,4 @@
-package org.arktekk.littlebro
+package org.arktekk.littlebro.util
 
 import java.io.InputStream
 import scala.xml.parsing.NoBindingFactoryAdapter

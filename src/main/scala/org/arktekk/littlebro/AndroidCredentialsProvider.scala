@@ -1,7 +1,7 @@
 package org.arktekk.littlebro
 
-import _root_.android.app.Activity
-import _root_.android.content.Intent
+import android.app.Activity
+import android.content.Intent
 import org.apache.http.client.CredentialsProvider
 import org.apache.http.auth.{UsernamePasswordCredentials, Credentials, AuthScope}
 import util.UICallbackHandler

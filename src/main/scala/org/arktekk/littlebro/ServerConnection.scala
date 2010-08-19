@@ -6,6 +6,7 @@ import org.apache.http.client.methods.HttpGet
 import java.net.URI
 import org.apache.http.HttpStatus
 import scala.xml.Node
+import util.XmlParser
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
