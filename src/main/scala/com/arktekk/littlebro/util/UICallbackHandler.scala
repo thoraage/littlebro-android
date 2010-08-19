@@ -15,6 +15,8 @@ trait UICallbackHandler extends Activity {
 
   def getContext: Context
 
+  def busyWorker(f: => Unit): Unit = busy { Worker.worker { f } }
+
   def busy(f: => Thread): Unit = {
     val thread = f
     new Thread {

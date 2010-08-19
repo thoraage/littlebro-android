@@ -17,41 +17,38 @@ import util.ListenerConversions._
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 class BrowserActivity extends ListActivity with AndroidCredentialsProvider with UICallbackHandler {
-  val propertyViewStack = new Stack[Model]
+  val propertyViewStack = new Stack[ListModel]
 
   def getContext = this
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    val domainUri = new URI(getIntent.getDataString)
-    val serverConnection = new ServerConnection(BrowserActivity.this, domainUri)
-    busy {
-      worker {
-        serverConnection.get match {
-          case Left(node) =>
-            val domainList = new DomainListModel(node)
-            runOnUiThread {
-              propertyViewStack.push(domainList)
-              populate
-            }
-          case Right(httpError) =>
-            runOnUiThread {
-              finish
-            }
-        }
+    val uri = new URI(getIntent.getDataString)
+    val serverConnection = new ServerConnection(BrowserActivity.this, uri)
+    busyWorker {
+      serverConnection.get match {
+        case Left(node) =>
+          val domainList = new DomainListModel(node)
+          propertyViewStack.push(domainList)
+          populate
+        case Right(httpError) =>
+          runOnUiThread {finish}
       }
     }
     getListView.onItemClick {
       (_, _, position: Int, _) =>
-        busy {
-          worker {
-            propertyViewStack.top.onSelect(position) {serverConnection.get(_)} match {
-              case Some(Left(model)) =>
-                propertyViewStack.push(model)
-                populate
-              case Some(Right(httpError)) => println("No worky: " + httpError.code) // TODO
-              case None =>
-            }
+        busyWorker {
+          propertyViewStack.top.onSelect(position) {serverConnection.get(_)} match {
+            case Some(Left(model)) =>
+              model match {
+                case model: ListModel =>
+                  propertyViewStack.push(model)
+                  populate
+                case model: AttributeModel =>
+                  showAlert(model.value)
+              }
+            case Some(Right(httpError)) => println("No worky: " + httpError.code) // TODO
+            case None =>
           }
         }
     }
@@ -69,18 +66,15 @@ class BrowserActivity extends ListActivity with AndroidCredentialsProvider with 
 
   def populate() {
     runOnUiThread {
-      propertyViewStack.top match {
-        case model: ListModel =>
-          setListAdapter(new ArrayAdapter(this, R.layout.browser, model.names))
-        case model: AttributeModel =>
-          val builder = new AlertDialog.Builder(BrowserActivity.this)
-          builder.setTitle("Value").setMessage(model.value).setNeutralButton("Ok", new OnClickListener {
-            override def onClick(dialog: DialogInterface, id: Int) {
-              dialog.dismiss
-            }
-          })
-          builder.create.show
-      }
+      setListAdapter(new ArrayAdapter(this, R.layout.browser, propertyViewStack.top.names))
+    }
+  }
+
+  def showAlert(text: String) {
+    runOnUiThread {
+      val builder = new AlertDialog.Builder(BrowserActivity.this)
+      builder.setTitle("Value").setMessage(text).onNeutralButton("Ok", {(dialog, _) => dialog.dismiss})
+      builder.create.show
     }
   }
 
