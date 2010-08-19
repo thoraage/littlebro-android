@@ -1,4 +1,4 @@
-package com.arktekk.littlebro.util
+package org.arktekk.littlebro.util
 
 import _root_.android.widget.AdapterView.OnItemClickListener
 import _root_.android.view.View

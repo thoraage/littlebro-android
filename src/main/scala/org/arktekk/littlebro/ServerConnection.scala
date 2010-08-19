@@ -1,11 +1,11 @@
-package com.arktekk.littlebro
+package org.arktekk.littlebro
 
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.client.{HttpClient, CredentialsProvider}
 import org.apache.http.client.methods.HttpGet
 import java.net.URI
 import org.apache.http.HttpStatus
-import xml.Node
+import scala.xml.Node
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

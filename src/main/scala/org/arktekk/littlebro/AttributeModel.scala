@@ -1,6 +1,6 @@
-package com.arktekk.littlebro
+package org.arktekk.littlebro
 
-import xml.Node
+import scala.xml.Node
 import XmlHelper._
 
 /**

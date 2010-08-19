@@ -1,8 +1,8 @@
-package com.arktekk.littlebro
+package org.arktekk.littlebro
 
 import java.io.InputStream
-import xml.parsing.NoBindingFactoryAdapter
-import xml.{TopScope, Node}
+import scala.xml.parsing.NoBindingFactoryAdapter
+import scala.xml.{TopScope, Node}
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

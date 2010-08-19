@@ -1,4 +1,4 @@
-package com.arktekk.littlebro;
+package org.arktekk.littlebro;
 
 class DomainListModelSpec {
 

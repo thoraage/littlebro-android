@@ -1,4 +1,4 @@
-package com.arktekk.littlebro.util
+package org.arktekk.littlebro.util
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

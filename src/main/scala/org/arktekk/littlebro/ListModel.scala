@@ -1,6 +1,6 @@
-package com.arktekk.littlebro
+package org.arktekk.littlebro
 
-import xml.Node
+import scala.xml.Node
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)

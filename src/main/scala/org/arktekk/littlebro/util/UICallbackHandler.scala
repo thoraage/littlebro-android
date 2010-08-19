@@ -1,4 +1,4 @@
-package com.arktekk.littlebro.util
+package org.arktekk.littlebro.util
 
 import _root_.android.app.{Activity, ProgressDialog}
 import _root_.android.content.Context
