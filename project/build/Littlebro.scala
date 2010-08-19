@@ -10,10 +10,11 @@ class Littlebro(info: ProjectInfo) extends ParentProject(info) {
   lazy val main  = project(".", "littlebro", new MainProject(_))
   lazy val tests = project("tests",  "tests", new TestProject(_), main)
 
-  class MainProject(info: ProjectInfo) extends AndroidProject(info) with Defaults {    
-    val scalatest = "org.scalatest" % "scalatest" % "1.0" % "test"
-    val specs = "org.scala-tools.testing" % "specs" % "1.6.2" % "test"
+  class MainProject(info: ProjectInfo) extends AndroidProject(info) with TypedResources with Defaults {
   }
 
-  class TestProject(info: ProjectInfo) extends AndroidTestProject(info) with Defaults
+  class TestProject(info: ProjectInfo) extends AndroidTestProject(info) with Defaults {
+    val specs = "org.scala-tools.testing" % "specs" % "1.6.2" % "test"
+    val scalatest = "org.scalatest" % "scalatest" % "1.0" % "test"
+  }
 }
