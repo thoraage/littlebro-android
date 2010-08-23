@@ -17,7 +17,7 @@ class MainActivity extends Activity {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.connections)
     val loginButton = findViewById(R.connections.login_button).asInstanceOf[Button]
-    loginButton.onClickListener {
+    loginButton.onClick {
       _ =>
         val hostAddressTextView = findViewById(R.connections.host_address_edit).asInstanceOf[TextView]
         val intent = new Intent(MainActivity.this, classOf[BrowserActivity])

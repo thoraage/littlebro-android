@@ -29,7 +29,7 @@ object ListenerConversions {
   implicit def alertDialogBuilder2AmendedAlertDialogBuilder(builder: AlertDialog.Builder) = new AmendedAlertDialogBuilder(builder);
 
   class AmendedView(view: View) {
-    def onClickListener(f: View => Unit) {
+    def onClick(f: View => Unit) {
       view.setOnClickListener(new View.OnClickListener {
         override def onClick(v: View) = f
       })

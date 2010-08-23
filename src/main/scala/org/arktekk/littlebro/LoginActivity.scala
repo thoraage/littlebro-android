@@ -16,7 +16,7 @@ class LoginActivity extends Activity {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.login)
     val okButton = findViewById(R.login.ok_button).asInstanceOf[Button]
-    okButton.onClickListener {
+    okButton.onClick {
       _ =>
         val userNameTextView = findViewById(R.login.user_name_edit).asInstanceOf[TextView]
         val passwordTextView = findViewById(R.login.password_edit).asInstanceOf[TextView]
