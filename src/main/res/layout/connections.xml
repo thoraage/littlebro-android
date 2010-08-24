@@ -4,6 +4,6 @@
               a:layout_height="fill_parent"
               a:orientation="vertical">
   <TextView a:text="@string/host_address_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
-  <EditText a:id="@+connections/host_address_edit" a:layout_width="fill_parent" a:layout_height="wrap_content"/>
-  <Button a:id="@+connections/login_button" a:text="@string/login_button_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
+  <EditText a:id="@+id/hostAddress" a:layout_width="fill_parent" a:layout_height="wrap_content"/>
+  <Button a:id="@+id/login" a:text="@string/login_button_text" a:layout_width="wrap_content" a:layout_height="wrap_content"/>
 </LinearLayout>

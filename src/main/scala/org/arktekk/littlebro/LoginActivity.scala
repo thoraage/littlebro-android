@@ -15,14 +15,14 @@ class LoginActivity extends Activity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.login)
-    val okButton = findViewById(R.login.ok_button).asInstanceOf[Button]
+    val okButton = findViewById(R.id.ok).asInstanceOf[Button]
     okButton.onClick {
       _ =>
-        val userNameTextView = findViewById(R.login.user_name_edit).asInstanceOf[TextView]
-        val passwordTextView = findViewById(R.login.password_edit).asInstanceOf[TextView]
+        val userNameTextView = findViewById(R.id.userName).asInstanceOf[TextView]
+        val passwordTextView = findViewById(R.id.password).asInstanceOf[TextView]
         val intent = new Intent
-        intent.putExtra(R.login.user_name_edit.toString, userNameTextView.getText.toString)
-        intent.putExtra(R.login.password_edit.toString, passwordTextView.getText.toString)
+        intent.putExtra(R.id.userName.toString, userNameTextView.getText.toString)
+        intent.putExtra(R.id.password.toString, passwordTextView.getText.toString)
         setResult(Activity.RESULT_OK, intent)
         finish
     }

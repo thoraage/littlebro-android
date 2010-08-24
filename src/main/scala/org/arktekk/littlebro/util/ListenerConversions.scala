@@ -31,7 +31,7 @@ object ListenerConversions {
   class AmendedView(view: View) {
     def onClick(f: View => Unit) {
       view.setOnClickListener(new View.OnClickListener {
-        override def onClick(v: View) = f
+        override def onClick(v: View) = f(v)
       })
     }
   }

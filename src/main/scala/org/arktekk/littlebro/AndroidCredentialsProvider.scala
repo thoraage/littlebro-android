@@ -39,8 +39,8 @@ trait AndroidCredentialsProvider extends UICallbackHandler with CredentialsProvi
       case LOGIN_INFORMATION =>
         resultCode match {
           case Activity.RESULT_OK =>
-            val userName = data.getExtras.getString(R.login.user_name_edit.toString)
-            val password = data.getExtras.getString(R.login.password_edit.toString)
+            val userName = data.getExtras.getString(R.id.userName.toString)
+            val password = data.getExtras.getString(R.id.password.toString)
             credentialsMailBox.send(Some(userName, password))
           case _ =>
             credentialsMailBox.send(None)

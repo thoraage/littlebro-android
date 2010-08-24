@@ -16,10 +16,10 @@ class MainActivity extends Activity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.connections)
-    val loginButton = findViewById(R.connections.login_button).asInstanceOf[Button]
+    val loginButton = findViewById(R.id.login).asInstanceOf[Button]
     loginButton.onClick {
       _ =>
-        val hostAddressTextView = findViewById(R.connections.host_address_edit).asInstanceOf[TextView]
+        val hostAddressTextView = findViewById(R.id.hostAddress).asInstanceOf[TextView]
         val intent = new Intent(MainActivity.this, classOf[BrowserActivity])
         intent.setData(Uri.parse(hostAddressTextView.getText.toString))
         startActivity(intent)
