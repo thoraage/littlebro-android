@@ -11,15 +11,15 @@ import util.ListenerConversions._
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 
-class LoginActivity extends Activity {
+class LoginActivity extends Activity with TypedActivity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.login)
-    val okButton = findViewById(R.id.ok).asInstanceOf[Button]
+    val okButton = findView(TR.ok)
     okButton.onClick {
       _ =>
-        val userNameTextView = findViewById(R.id.userName).asInstanceOf[TextView]
-        val passwordTextView = findViewById(R.id.password).asInstanceOf[TextView]
+        val userNameTextView = findView(TR.userName)
+        val passwordTextView = findView(TR.password)
         val intent = new Intent
         intent.putExtra(R.id.userName.toString, userNameTextView.getText.toString)
         intent.putExtra(R.id.password.toString, passwordTextView.getText.toString)

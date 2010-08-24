@@ -12,14 +12,14 @@ import util.ListenerConversions._
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
  */
 
-class MainActivity extends Activity {
+class MainActivity extends Activity with TypedActivity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.connections)
-    val loginButton = findViewById(R.id.login).asInstanceOf[Button]
+    val loginButton = findView(TR.login)
     loginButton.onClick {
       _ =>
-        val hostAddressTextView = findViewById(R.id.hostAddress).asInstanceOf[TextView]
+        val hostAddressTextView = findView(TR.hostAddress)
         val intent = new Intent(MainActivity.this, classOf[BrowserActivity])
         intent.setData(Uri.parse(hostAddressTextView.getText.toString))
         startActivity(intent)
