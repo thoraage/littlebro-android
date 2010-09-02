@@ -1,7 +1,7 @@
 package org.arktekk.littlebro.model
 
 import scala.xml.Node
-import util.XmlHelper._
+import org.arktekk.littlebro.util.XmlHelper._
 import org.arktekk.littlebro.HttpError
 
 /**

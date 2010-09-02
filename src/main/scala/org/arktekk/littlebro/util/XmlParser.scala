@@ -12,7 +12,7 @@ object XmlParser extends NoBindingFactoryAdapter {
   val parserFactory = javax.xml.parsers.SAXParserFactory.newInstance()
   parserFactory.setNamespaceAware(false)
   parserFactory.setFeature(namespacePrefixes, true)
-  val parser = parserFactory.newSAXParser
+  override val parser = parserFactory.newSAXParser
 
   def loadXML(inputStream: InputStream): Node = {
     scopeStack.push(TopScope)

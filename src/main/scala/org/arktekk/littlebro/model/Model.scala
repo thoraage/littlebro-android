@@ -1,6 +1,7 @@
 package org.arktekk.littlebro.model
 
 import scala.xml.Node
+import org.arktekk.littlebro.HttpError
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
