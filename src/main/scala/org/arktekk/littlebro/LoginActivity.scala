@@ -17,14 +17,13 @@ class LoginActivity extends Activity with TypedActivity {
     setContentView(R.layout.login)
     val okButton = findView(TR.ok)
     okButton.onClick {
-      _ =>
-        val userNameTextView = findView(TR.userName)
-        val passwordTextView = findView(TR.password)
-        val intent = new Intent
-        intent.putExtra(R.id.userName.toString, userNameTextView.getText.toString)
-        intent.putExtra(R.id.password.toString, passwordTextView.getText.toString)
-        setResult(Activity.RESULT_OK, intent)
-        finish
+      val userNameTextView = findView(TR.userName)
+      val passwordTextView = findView(TR.password)
+      val intent = new Intent
+      intent.putExtra(R.id.userName.toString, userNameTextView.getText.toString)
+      intent.putExtra(R.id.password.toString, passwordTextView.getText.toString)
+      setResult(Activity.RESULT_OK, intent)
+      finish
     }
   }
 

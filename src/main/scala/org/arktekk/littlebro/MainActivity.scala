@@ -18,11 +18,10 @@ class MainActivity extends Activity with TypedActivity {
     setContentView(R.layout.connections)
     val loginButton = findView(TR.login)
     loginButton.onClick {
-      _ =>
-        val hostAddressTextView = findView(TR.hostAddress)
-        val intent = new Intent(MainActivity.this, classOf[BrowserActivity])
-        intent.setData(Uri.parse(hostAddressTextView.getText.toString))
-        startActivity(intent)
+      val hostAddressTextView = findView(TR.hostAddress)
+      val intent = new Intent(MainActivity.this, classOf[BrowserActivity])
+      intent.setData(Uri.parse(hostAddressTextView.getText.toString))
+      startActivity(intent)
     }
   }
 
