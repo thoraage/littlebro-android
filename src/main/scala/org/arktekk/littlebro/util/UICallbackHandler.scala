@@ -2,6 +2,8 @@ package org.arktekk.littlebro.util
 
 import android.app.{Activity, ProgressDialog}
 import android.content.Context
+import android.os.AsyncTask
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Thor Åge Eldby (thoraageeldby@gmail.com)
@@ -17,26 +19,20 @@ trait UICallbackHandler extends Activity {
 
   def busyWorker(f: => Unit): Unit = busy { Worker.worker { f } }
 
-  def busy(f: => Thread): Unit = {
-    val thread = f
-    new Thread {
-      override def run: Unit = {
-        thread.join(1000)
-        if (thread.isAlive) {
+  def busy(f: => AsyncTask[Object, Void, Object]): Unit = {
+    val asyncTask = f
+    Worker.worker {
+      asyncTask.get(1, TimeUnit.SECONDS)
+      if (asyncTask.getStatus != AsyncTask.Status.FINISHED) {
+        runOnUiThread {
+          val dialog = ProgressDialog.show(getContext, "Busy", "Retrieving")
+          asyncTask.get
           runOnUiThread {
-            val dialog = ProgressDialog.show(getContext, "Busy", "Retrieving")
-            new Thread() {
-              override def run: Unit = {
-                thread.join
-                runOnUiThread {
-                  dialog.hide
-                }
-              }
-            }.start
+            dialog.hide
           }
         }
       }
-    }.start
+    }
   }
 
 }
