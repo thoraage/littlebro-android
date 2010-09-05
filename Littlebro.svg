@@ -1,0 +1,40 @@
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_24">
+   <stop stop-color="#ff0000" offset="0"/>
+   <stop stop-color="#ffff00" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_25">
+   <stop stop-color="#ffffff" offset="0"/>
+   <stop stop-color="#eaeaea" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_26">
+   <stop stop-color="#ffffff" offset="0"/>
+   <stop stop-color="#c6c6c6" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <rect ry="73" rx="73" id="svg_22" height="453.99998" width="453.99998" y="14.00001" x="85" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="6" stroke="#000000" fill="url(#svg_26)"/>
+  <circle fill="#5da4ea" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="312.00001" cy="241.00001" r="190.57837" id="svg_4"/>
+  <circle fill="#bfbfbf" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="311.36474" cy="239.94124" r="1.16464" id="svg_1"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m133.27986,307.06717l178.72014,-66.06717l-163.47388,97.40671l-15.24626,-31.33954z" id="svg_9"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m311.15298,241.84702l-171.94402,-80.46642l6.77611,-12.70522l165.16791,93.17163z" id="svg_10"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m461.92163,121.57091l-150.76865,120.27611l173.63803,-81.31343l-22.86938,-38.96268z" id="svg_11"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m312,241l-106.72388,-159.2388l19.48135,-9.31716l87.24252,168.55596z" id="svg_12"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m313.69403,241l15.24628,-190.57835l-14.39926,0.84702l-0.84702,189.73133z" id="svg_13"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m312,242.69403l183.80225,48.27985l-6.77612,22.0224l-177.02612,-70.30225z" id="svg_14"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m312,242.69403l-109.26492,153.30969l16.09329,10.16418l93.17163,-163.47388z" id="svg_15"/>
+  <path fill="#ffffff" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" opacity="0.5" d="m361.12686,425.64926l30.49255,-11.0112l-79.61942,-171.94403l49.12686,182.95523z" id="svg_16"/>
+  <path opacity="0.5" id="svg_2" d="m121.42165,258.78732l190.57835,-16.94031l-190.57835,0l0,16.94031z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_3" d="m383.99628,63.97389l-71.99628,179.56715l114.34702,-156.69775l-42.35074,-22.8694z" opacity="0.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_6" d="m431.42911,389.2276l-120.27612,-147.38058l132.98135,134.67538l-12.70523,12.7052z" opacity="0.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_7" d="m250.16791,421.41418l60.98508,-182.95523l-33.88058,190.57837l-27.10449,-7.62314z" opacity="0.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_8" d="m311.15298,243.54105l186.34329,-45.7388l3.38806,16.94029l-189.73135,28.79851z" opacity="0.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <circle fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="310.30598" cy="241.84702" r="92.92877" id="svg_5"/>
+  <circle id="svg_18" r="35.46353" cy="218.97762" cx="330.63433" opacity="0.1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <circle id="svg_19" r="54.38072" cy="167.30971" cx="367.90299" opacity="0.1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <circle id="svg_20" r="45.45557" cy="129.19404" cx="396.7015" opacity="0.1" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <title>Layer 1</title>
+ </g>
+</svg>
