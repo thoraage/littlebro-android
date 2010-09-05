@@ -1,5 +1,9 @@
 .idea
 *.iml
+*.ipr
+*.iws
+.classpath
+.project
 target
 target/
 lib_managed/
